@@ -352,7 +352,6 @@ h3 {
 -------------------------------------------------------
 */
 
-
     .splash {
       width:640px;
       margin:0 auto;
@@ -391,7 +390,20 @@ h3 {
       background:none;
     }
 	
+	
+	
 	/*
 	----------------------------------------------------------
 	*/
+	
+	p.excerpt{  
+		font-size: 20px;
+		padding-left: 50px;
+		padding-right : 50px;
+		color: #fff;
+	}
+	
+	h2.bright{  
+		color: #fff;
+	}
 	
