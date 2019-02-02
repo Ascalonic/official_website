@@ -8,8 +8,9 @@
 2. Init Home Slider
 3. Init Search
 4. Init Menu
-5. Init Services Slider
 6. Init SVG
+7. Init Clients Slider
+4. Init Google Map
 
 
 ******************************/
@@ -26,6 +27,7 @@ $(document).ready(function()
 
 	var header = $('.header');
 	var menuActive = false;
+	var map;
 
 	setHeader();
 
@@ -42,8 +44,9 @@ $(document).ready(function()
 	initHomeSlider();
 	initSearch();
 	initMenu();
-	initServicesSlider();
 	initSvg();
+	initClientsSlider();
+	initGoogleMap();
 
 	/* 
 
@@ -125,7 +128,7 @@ $(document).ready(function()
 					homeSlider.trigger('next.owl.carousel');
 				});
 			}
-		}
+		}	
 	}
 
 	/* 
@@ -192,53 +195,6 @@ $(document).ready(function()
 
 	/* 
 
-	5. Init Services Slider
-
-	*/
-
-	function initServicesSlider()
-	{
-		if($('.services_slider').length)
-		{
-			var servicesSlider = $('.services_slider');
-
-			servicesSlider.owlCarousel(
-			{
-				loop:true,
-				nav:false,
-				dots:false,
-				autoplay:true,
-				smartSpeed:1200,
-				margin:30,
-				responsive:
-				{
-					0:{items:1},
-					480:{items:1},
-					768:{items:2},
-					992:{items:3}
-				}
-			});
-
-			if($('.services_prev').length)
-			{
-				$('.services_prev').on('click', function()
-				{
-					servicesSlider.trigger('prev.owl.carousel');
-				});
-			}
-
-			if($('.services_next').length)
-			{
-				$('.services_next').on('click', function()
-				{
-					servicesSlider.trigger('next.owl.carousel');
-				});
-			}
-		}
-	}
-
-	/* 
-
 	6. Init SVG
 
 	*/
@@ -272,6 +228,79 @@ $(document).ready(function()
 				// Replace image with new SVG
 				$img.replaceWith($svg);
 			}, 'xml');
+		});
+	}
+
+	/* 
+
+	7. Init Clients Slider
+
+	*/
+
+	function initClientsSlider()
+	{
+		if($('.clients_slider').length)
+		{
+			var clientsSlider = $('.clients_slider');
+
+			clientsSlider.owlCarousel(
+			{
+				loop: true,
+				dots: false,
+				autoplay:true,
+				responsive:
+				{
+					0:{items:1},
+					575:{items:2},
+					768:{items:3},
+					992:{items:4},
+					1199:{items:5}
+					
+				}
+			});
+		}
+	}
+
+	/* 
+
+	4. Init Google Map
+
+	*/
+
+	function initGoogleMap()
+	{
+		var myLatlng = new google.maps.LatLng(25.525825, -80.360198);
+    	var mapOptions = 
+    	{
+    		center: myLatlng,
+	       	zoom: 13,
+			mapTypeId: google.maps.MapTypeId.ROADMAP,
+			draggable: true,
+			scrollwheel: false,
+			zoomControl: true,
+			zoomControlOptions:
+			{
+				position: google.maps.ControlPosition.RIGHT_CENTER
+			},
+			mapTypeControl: false,
+			scaleControl: false,
+			streetViewControl: false,
+			rotateControl: false,
+			fullscreenControl: true,
+			styles:[]
+    	}
+
+    	// Initialize a map with options
+    	map = new google.maps.Map(document.getElementById('map'), mapOptions);
+   
+		// Re-center map after window resize
+		google.maps.event.addDomListener(window, 'resize', function()
+		{
+			setTimeout(function()
+			{
+				google.maps.event.trigger(map, "resize");
+				map.setCenter(myLatlng);
+			}, 1400);
 		});
 	}
 });

@@ -5,11 +5,10 @@
 [Table of Contents]
 
 1. Vars and Inits
-2. Init Home Slider
+2. Set Header
 3. Init Search
 4. Init Menu
-5. Init Services Slider
-6. Init SVG
+5. Init SVG
 
 
 ******************************/
@@ -26,6 +25,7 @@ $(document).ready(function()
 
 	var header = $('.header');
 	var menuActive = false;
+	var ctrl = new ScrollMagic.Controller();
 
 	setHeader();
 
@@ -39,10 +39,8 @@ $(document).ready(function()
 		setHeader();
 	});
 
-	initHomeSlider();
 	initSearch();
 	initMenu();
-	initServicesSlider();
 	initSvg();
 
 	/* 
@@ -78,53 +76,6 @@ $(document).ready(function()
 		if(window.innerWidth > 767 && menuActive)
 		{
 			closeMenu();
-		}
-	}
-
-	/* 
-
-	2. Init Home Slider
-
-	*/
-
-	function initHomeSlider()
-	{
-		if($('.home_slider').length)
-		{
-			var homeSlider = $('.home_slider');
-
-			homeSlider.owlCarousel(
-			{
-				items:1,
-				loop:true,
-				smartSpeed:1200,
-				autoplay:true,
-				dots:true,
-				nav:false,
-				responsive:
-				{
-					0:{dots:false},
-					575:{dots:true}
-				}
-			});
-
-			if($('.home_slider_prev').length)
-			{
-				var prev = $('.home_slider_prev');
-				prev.on('click', function()
-				{
-					homeSlider.trigger('prev.owl.carousel');
-				});
-			}
-
-			if($('.home_slider_next').length)
-			{
-				var next = $('.home_slider_next');
-				next.on('click', function()
-				{
-					homeSlider.trigger('next.owl.carousel');
-				});
-			}
 		}
 	}
 
@@ -192,54 +143,7 @@ $(document).ready(function()
 
 	/* 
 
-	5. Init Services Slider
-
-	*/
-
-	function initServicesSlider()
-	{
-		if($('.services_slider').length)
-		{
-			var servicesSlider = $('.services_slider');
-
-			servicesSlider.owlCarousel(
-			{
-				loop:true,
-				nav:false,
-				dots:false,
-				autoplay:true,
-				smartSpeed:1200,
-				margin:30,
-				responsive:
-				{
-					0:{items:1},
-					480:{items:1},
-					768:{items:2},
-					992:{items:3}
-				}
-			});
-
-			if($('.services_prev').length)
-			{
-				$('.services_prev').on('click', function()
-				{
-					servicesSlider.trigger('prev.owl.carousel');
-				});
-			}
-
-			if($('.services_next').length)
-			{
-				$('.services_next').on('click', function()
-				{
-					servicesSlider.trigger('next.owl.carousel');
-				});
-			}
-		}
-	}
-
-	/* 
-
-	6. Init SVG
+	5. Init SVG
 
 	*/
 
